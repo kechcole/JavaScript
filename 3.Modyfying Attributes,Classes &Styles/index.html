@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 24px;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Classes added for topic on class modification. */
+        .active {
+            border: 2px solid blue;
+        }
+
+        .warning {
+            border: 2px solid red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        div {
+            border: 2px dashed lightgray;
+            padding: 15px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1. Modyfying Attributes Classes and Styles.</h1>
+    <p>
+        Here we will learn further how we can manipulate the
+        DOM using JS interactive capabilities and modify web
+        elements through use of styles, classes and other
+        attributes of of HTML element nodes. <br>
+        There multiple ways we can select an element as learnt
+        previously, the most robust and versatile is querySelector()
+        method as it gives user a wider scope by allowing elements
+        to be picked using any type of selector.
+    </p>
+    <br>
+
+    <div id="demo-id">Demo</div>
+
+    <br>
+    <p>
+        Using the above div tag , access the element and
+        modify the text inside.
+    </p>
+    <script>
+        // Type at the console
+        var demoID = document.querySelector('#demo-id');
+        console.log(demoID);
+
+        // var demoID = document.getElementById('#demo-id');
+        // console.log(demoID); 
+
+        // Change the text content
+        demoID.textContent = 'Demo change by KechCole.';
+    </script>
+    <br>
+
+    <p>
+        In case we have multiple elements by a common selector
+        such as a specific class, we have to loop through each
+        element in the list as illustrated below. <br>
+        Change the text content for each element. <br>
+        Its important to note that getElementsByClassName() and
+        getElementsByTagName() methods return a collection which
+        do have access to forEach() loop that querySelectorAll()
+        has, thus you will need a standard loop to traverse accross
+        elements.
+    </p>
+    <br>
+
+    <div class="demo-class">Demo Class 1</div>
+    <div class="demo-class">Demo Class 2</div>
+
+    <br>
+    <script>
+        // Loop through the above div elements.
+        var demoGrp = document.querySelectorAll('.demo-class');
+
+        // Loop
+        demoGrp.forEach(demo => {
+            demo.textContent = ('Content changed by Cole');
+        });
+    </script>
+
+    <h2>1.1 Modify Attributes.</h2>
+    <br>
+
+    <p>
+        Attributes provide additional information about an element,
+        though not all do contaion them. The must be specified
+        the starting tag using name and value pairs i.e class='id' . <br>
+        In JS we have multiple methods to modify them :
+    <ul>
+        <li>hasAttribute() - Returns a boolean value</li>
+        <li>getAttribute() - Return a value of a specified attribute</li>
+        <li>setAttribute() - Adds / updates a value of a specified attribute.</li>
+        <li>removeAttribute() - Remove an attribute from the element.</li>
+    </ul>
+    <br>
+    Let create a tag that contains an image from the local file
+    source and test the above described methods.
+    </p>
+
+    <img src="spider.jpg" alt="coles_spider" width="242" height="242" style="vertical-align:top" />
+
+    <script>
+        // Assign the image element 
+        const image = document.querySelector('img');
+        // console.log(image);  // Get image features such as attributes.
+
+        // Does the image contain certain attributes 
+        console.log(image.hasAttribute('src'));  // true
+        console.log(image.hasAttribute('href')); // false 
+
+        // Grab an attribute 
+        console.log(image.getAttribute('alt'));  // coles_spider
+
+        // Remove an attribute 
+        image.removeAttribute('alt');    // dont log else undefined 
+        console.log(image.hasAttribute('alt'));  // false
+
+        // Reset the atttribute 
+        image.setAttribute('alt', 'a spider renderd by cole');
+        console.log(image.getAttribute('alt'));
+
+        // Any attribute can be set this way, one can even 
+        // change the image using src attribute. 
+    </script>
+    <br>
+
+    <h2>1.2 Modifying Classes.</h2> <br>
+
+    <p>
+        The class attribute corresponds to CSS class selectors.
+        These type of attributes allows users to apply styling to
+        multiple elements unlike IDs which can only exist once per
+        page. <br>
+        In JS we have methods to work with class atrributes as seen
+        below. Lets add css files and create div classes to be style.
+    </p>
+    <br>
+
+    <div>Div Modify</div>
+
+    <!-- An inline class will overide an internal css style  -->
+    <div class="active">Div 2</div>
+    <br>
+
+    <script>
+        // Select the fourth div tag, just above. Since we 
+        // have others defined prior  
+        const fourtDiv = document.querySelectorAll('div')[3];
+        // console.log(fourtDiv);
+
+        // Assign a warning class to div above and note changes 
+        // defined in internal css on it
+        fourtDiv.className = 'warning';     // changes colour to red
+
+
+
+        // Multiple classes methods.
+
+        //  Select the 5th div by class name
+        const fifthDiv = document.querySelector('.active');
+
+        // add a hidden class 
+        fifthDiv.classList.add('hidden');  // Object disappears as defined in internal css
+
+        // Remove a hidden class 
+        fifthDiv.classList.remove('hidden');  // Object reappears
+
+        // Switch between hidden true and false
+        // fifthDiv.classList.toggle('hidden');
+
+        // Replace active class with warning class 
+        fifthDiv.classList.replace('active', 'warning');  // appearance is changed
+
+        // Unlike in the className example, using classList.add() will add a
+       // new class to the list of existing classes. You can also add multiple
+       // classes as comma-separated strings
+    </script>
+    <br>
+
+    <h2>1.3 Modifying Styles.</h2> <br>
+
+    <p>
+        Often, styles will be applied to elements via a stylesheet
+        as we have done previously in this article, but sometimes
+        we have to add or edit an inline style directly.
+        Create another div and add features.
+    </p>
+    <br>
+
+    <div style="height: 100px; width: 100px;
+                border: 2px solid black;">Div Modify Style</div>
+
+    <script>
+        // Select div above, the sixth one 
+        const sixthDiv = document.querySelectorAll('div')[5];
+        // console.log(sixthDiv);
+
+        // Apply style to div
+        sixthDiv.setAttribute('style', 'text-align: center');
+        // This removes all existing inline styles from the 
+        // element. An UNINTENDED effect, thus its better to use 
+        // style attribute directly as seen below 
+
+
+        // Make div into a circle and vertically center the text
+        sixthDiv.style.height = '100px';
+        sixthDiv.style.width = '100px';
+        sixthDiv.style.border = 'solid black';
+        sixthDiv.style.alignItems = 'center';
+        sixthDiv.style.justifyContent = 'center';
+        sixthDiv.style.borderRadius = '50%';
+        sixthDiv.style.display = 'flex';
+        // Note that css are written in kebab-case, which is lowe case words
+        // separated by dashes. But this styling cannot be use in JS, instead,
+        // its replaced with camelCase equivalent. Which is the first word
+        // lowercase and all subsequent words are capitalized.
+        // i.e text-align will be textAlign for JS.
+    </script>
+
+    <P>
+        If many stylistic changes are to be applied to an element, the best course of
+        action is to apply the styles to a class and add a new class. However, there are
+        some cases in which modifying the inline style attribute will be necessary or
+        more straightforward.
+    </P>
+</body>
+
+</html>
