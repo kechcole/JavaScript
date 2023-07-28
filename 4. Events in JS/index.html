@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events.</title>
+
+    <style>
+        body {
+            font-size: 24px;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <h1>Events in JS.</h1>
+
+    <h2>1.1 Introduction.</h2>
+
+    <p>
+        Although at this point we can now make almost any change we want to
+        the DOM, from a user perspective it is not very helpful because we have
+        only manually triggered changes. By learning about events, we will
+        understand how to tie everything together to make interactive websites.
+        <br>
+        Events are actions taking place at the browser that are initiated
+        by the user or the browser itself. Some common examples inclde ;
+
+    <ul>
+        <li>User clicking a button</li>
+        <li>User hovering a mouse.</li>
+        <li>User submitting a form.</li>
+        <li>User pressing a key on the keyboard.</li>
+        <li>A page finishes loading.</li>
+    </ul>
+
+    By writing JS sripts that response to these events, developers
+    can customise messages to be displayed, valdate information,
+    react and many more. Lets cover event listeners, event handlers,
+    and event objects as this will give you more manouverability
+    in developing interactive web experiences for end users.
+    </p>
+
+    <h2>1.2 Event Handlers and Listeners.</h2>
+
+    <p>
+        Developers can create triggers that fire an event(action) when
+        userc click a button or press a key. Such events are commonly
+        reffered to as keypress or click events. An <b>event handler</b>
+        is basically a JavaScript function that executes when an event fires.
+        While an <b>event listener</b> attaches a responsive interface
+        to an element. It allows a particilar element to wait and listen
+        for a event event to fire. <br>
+        There are 3 ways in which we can assign events events to elements.
+    <ol type="a">
+        <li>Inline Event handler</li>
+        <li>Event Handler Properties.</li>
+        <li>Event Listeners</li>
+    </ol>
+    </p>
+
+    <h3> (a) Inline Event Handler. </h3>
+
+    <p>
+        Consider a button element that when a user clicks it changes the
+        text content of paragraph below. Directly on the button we will add
+        an attribute called <i>onclick</i>, its value is a function called
+        <em>changeText()</em>, that will be hosted in a JS file in our directory.
+        <br>
+        <br>
+
+        <!-- Button with attribute containing a function -->
+        <button onclick="changeText()">Click</button>
+
+    <p>Change Me.</p>
+
+
+    <br>
+    <br>
+
+    Inline event handlers are easier to understand but the only downtime to
+    them is that they become tedious to maintain when they are many, compare
+    to CSS inline stylers. It more practical and feasible to maintain a
+    separate stylesheet of classes than being added independently to every
+    element.
+
+    </p>
+
+    <h3> (b) Event Handler Properties. </h3>
+
+    <p>
+
+        Works similar to inline event handler except that it's element property
+        is set in a JavaScript file instead of the attribute in HTML.
+        We will set up a similar feature as previous but this time onclick
+        attribute wont be in the markup. Our function will also remain similar
+        only that it will be accessed from the JS file also. <br>
+        <i>
+            <b>
+                Event handlers do not follow the camelCase convention that most
+                JavaScript code adheres to. Notice that the code in JS file is
+                onclick, not onClick.
+
+            </b>
+        </i>
+
+        <br>
+        <br>
+
+        <button>Click me</button> <br>
+
+    <p>I will change.</p>
+
+    <br>
+    </p>
+
+    <p>
+        The event handler property is slightly more maintainable than inline handler
+        but still suffers some setback. Example, trying to set multiple,
+        separate <i>onclick</i> properties will cause all but the last one to be
+        overwritten, as demonstrated below. Try change the colour and the textual content.
+        <br>
+        <br>
+
+        <button>Click me</button>
+    <p>Change Me again.</p>
+
+    <br>
+    The text colour event was not fired, only text content effected, the
+    last one.
+    </p>
+
+    <h3> (c) Event Listeners. </h3>
+
+    <p>
+        This is the newest addition to JavaScript event handlers. This is how it works.
+        An event listener watches for an event on an element. Instead of assigning the
+        event directly to the property of an element, we will use <i>addEventListener()</i>
+        method to listen for an event. <br>
+        The method takes two parameters, first is the event it is to be listening for and
+        the listener callback function.
+        <br>
+
+        <button>Click me.</button>
+    <p>Change me again.</p> <br>
+
+    Notice that with the first two methods, a click event was referred to as
+    <i>onclick</i>, but with event listeners it is referred to as <i>click</i>. Every event
+    listener drops the <i>on</i> from the word. <br>
+
+    Advantages of of event listeners.
+    <ol type="i">
+        <li>Multiple elements can be changed.</li>
+        <li>Multiple events can be set on the same element.</li>
+    </ol>
+    </p>
+
+    <h4> (d) Event Listeners with Anonymous function. </h4>
+
+    <p>
+        Often, anonymous functions will be used instead of a function reference
+        on an event listener. Anonymous functions are functions that are not
+        named. It is also possible to use the <i>EventListener()</i> function to
+        remove one or all events from an element.
+        <br>
+
+    <p>Change me</p>
+    <button>Click Me</button>
+    </p>
+
+    <h2>1.3. Common Events.</h2>
+
+    <p>
+        We have learned about inline event handlers, event handler properties, and
+        event listeners using the click event, but there are many more events in
+        JavaScript.
+    </p>
+
+    <h3> (a) Mouse Events.</h3>
+
+    <p>
+        These are among the most frequently used events. They refers to those
+        events that involve clicking buttons on the mouse or hovering and
+        moving the mouse pointer.
+        <br>
+
+    <ul>
+        <u style="margin-left: 30px;"><i>Event</i> - Description</u>
+        <li><i>click</i> - Fires when mouse is pressed and released on an element</li>
+        <li><i>dblclick</i> - Fires when an element is clicked twice</li>
+        <li><i>mouseenter</i> - Fires when a pointer enters an element</li>
+        <li><i>mouseleave</i> - Fires when a pointer leaves an element</li>
+        <li><i>mousemove</i> - Fires when a pointer moves inside an element</li>
+    </ul>
+
+    Using mouseenter and mouseleave in tandem recreates a hover
+    effect that lasts as long as a mouse pointer is on the element.
+    </p>
+
+    <h3> (b) Form Events.</h3>
+
+    <p>
+        Form events are actions that pertain to forms, such as input elements
+        being selected or unselected, and forms being submitted.
+        JavaScript is often used to submit forms and send the values through to
+        a backend language. The advantage of using JavaScript to send forms is
+        that it does not require a page reload to submit the form, and JavaScript
+        can be used to validate required input fields
+    </p>
+
+    <h3> (c) Keyboard Events.</h3>
+
+    <p>
+        They are used for handlng Keyboard activities such as pressing a key,
+        lifting a key, and holding down a key.
+
+       
+    </p>
+
+</body>
+
+<!-- Call the js file to change on click event.  -->
+<script src="Event/script.js"></script>
+
+<!-- Call second js file , inline event handler -->
+<script src="Event/script2.js"></script>
+
+<!-- Call third JS file , Event Handler Property -->
+<script src="Event/script3.js"></script>
+
+<!-- Call the fourth JS file,  Event Listener -->
+<script src="Event/script4.js"></script>
+
+<!-- Call the fifth JS file,  Event Listener -->
+<script src="Event/script5.js"></script>
+
+</html>
