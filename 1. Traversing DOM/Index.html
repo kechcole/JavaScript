@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traversing the DOM.</title>
+
+    <style>
+        body {
+            max-width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1 Traversing the DOM.</h2>
+    <P>
+        From our previous studies the DOM is structured like a tree of nodes with the document as the
+        root and other elements as branches ; elements, comments and text nodes. Navigating these
+        structures is cruciall in understanding HTML and JS languages. <br>
+
+    <h3>1.1 Root Nodes.</h3> <br>
+
+    Even though the document object is the root of every node, its actually a property of the window
+    object. The window is a global top level object representing the window in the browser. <br>
+    The window object contains information such as the height, width of the window, prompts and
+    alerts. It also houses the document object. <br>
+    The document has 4 basic component nodes that must be loaded even when a blank html file is
+    loaded in the browser, they are : html, head, body (elements nodes) and finally the #document a
+    document node. <br>
+    <script>
+        // Root nodes
+        console.log('The root node is :')
+        console.log(document);
+
+        console.log(document.documentElement);
+
+        console.log('Head tag properties.')
+        console.log(document.head);
+        console.log('NODE TYPE : ' + document.head.nodeType);
+
+        console.log(document.body);
+
+        // Try header 2.
+        console.log('h2 Property.');
+        console.log(document.h2);  // undefined ,coz it doesnt have its own property in the document.
+
+
+        // Get element by their tag name 
+        const breaks = document.getElementsByTagName('br');
+        console.log('Page breaks available. \n');
+        console.log(breaks);
+
+        const paragraphs = document.getElementsByTagName('p');
+        console.log('Paragraphs available ')
+        console.log(paragraphs);
+    </script>
+
+    <h3>1.2 Parent Nodes.</h3> <br>
+
+    Nodes are classified in a hierachial level, based on this they can be classiified to as parent,
+    children and siblings one above the other in that order.On top of the chain is the parent that
+    is closest to the DOM. In our case, html is the parent of head and body while the latter is the
+    parent of h2 and p. <br>
+    The parent of almost any node is an element node, as text and comments cannot be parents to
+    other nodes. However, the parent of html is a document node, so parentElement returns null. <br>
+
+    <script>
+        // Test parent of elements 
+
+        // Parent of head element using the first head tag 
+        const headTag = document.getElementsByTagName('head')[0]
+        console.log('The parent node of head is : ');
+        console.log(headTag.parentNode);  // document object
+        console.log('The parent element of head is : ');
+        console.log(headTag.parentElement)
+
+        // Parent of h2 and p
+        const para = document.getElementsByTagName('h2')[0];  // First header 2 element
+        console.log('Parent node of header 2 : ');
+        console.log(para.parentNode);
+        console.log('The parent element of header 2 is : ');
+        console.log(para.parentElement)
+
+        // The grandparent is found two steps above, can be located using chaining operation.
+        console.log('The grandparent of header 2 is : ');
+        console.log(para.parentNode.parentNode); //  
+
+
+        // Parent of the second script element , note indexing. 
+        const header3 = document.getElementsByTagName('script')[1];
+        console.log('Parent node of second script tag :');
+        console.log(header3.parentNode);
+        console.log('The parent element of second script tag is : ');
+        console.log(headTag.parentElement)
+        console.log('The grandparent of second script is : ');
+        console.log(headTag.parentNode.parentNode);  // document
+    </script>
+
+    <h3>1.3 Children Nodes.</h3>
+    The children of a node are nodes located one level below it. Descendats are nodes found beyond
+    one level of nesting. The childNodes property will return a live list of every child of a
+    node. <br>
+    childNodes and children do not return arrays with all the Array properties and methods, but they
+    appear and behave similarly to JavaScript arrays. You can access nodes by index number, or find
+    their length property.
+
+
+    <script>
+        // Child nodes of html 
+        const html = document.getElementsByTagName('html')[0];
+        console.log('Child nodes of html are : ');
+        console.log(html.childNodes);       // NodeList(3) [head, text, body], 
+        // html is the parent of items in above list
+
+
+
+        // Child nodes of body 
+        const body = document.getElementsByTagName('body')[0];
+        console.log('body element is the parent of : ');
+        console.log(body.childNodes);   // Every child node including texts and elements.
+        // NodeList(29) [text, h2, text, p, h3, text, br, text, br, text, br, text, 
+        // br, text, script, text, h3, text, br, text, br, text, br, text, script, 
+        // text, h3, text, script]
+
+        // Retrieve element nodes
+        console.log(body.children);  // Only element nodes returned , text nodes omitted from the list
+
+        // First child 
+        console.log(body.firstChild);  // #text
+
+        // Last child 
+        console.log(body.lastChild);    // <script>...<script>
+
+        // First element child
+        console.log(body.firstElementChild);   // <h2>Traversing the DOM.<h2>
+
+        // Change the background colour of header 2 elements 
+        body.firstElementChild.style.background = 'yellow';
+
+        // Loop through all  the element and change background colour to green
+        for (let element of body.children) {
+            element.style.background = 'green';
+        };
+
+
+
+        // Access infor about the first paragraph 
+        const h3 = document.getElementsByTagName('p')[0];
+
+        console.log('Child nodes of first parangraph');
+        console.log(h3.childNodes);
+
+        console.log('loop through first parangraph');
+        for (let element of h3.childNodes) {
+            console.log(element);
+        };
+
+
+        // Change colour of the second header 3 element, use indexing to get its position.  
+        console.log(body.childNodes[16]);
+
+        body.childNodes[16].style.background = 'yellow';
+
+    </script>
+
+    <h3>1.4 Sibling Nodes.</h3>
+    When a nodes appears in the same tree level in the DOM, they are referred to as siblings irrespective
+    of their type. Sibling properties work the same way as the children nodes, in that there is a set of
+    properties to traverse all nodes, and a set of properties for only element nodes.
+
+    <script>
+        // Select the third child node of body , its a header 3 element.
+        const thirdBodyChild = body.children[2];
+        console.log('Third child of the body element. ')
+        console.log(thirdBodyChild);
+
+        // Using the element sibling property , colour the previous node as red 
+        console.log(body.children[1]);
+
+        thirdBodyChild.previousSibling.style.background = 'red';  // colour of first paragraph applied.
+
+        // Log the next element sibling.
+        console.log('Next element sibling : ');
+        console.log(thirdBodyChild.nextElementSibling);
+    </script>
+    </P>
+
+</body>
+
+</html>
