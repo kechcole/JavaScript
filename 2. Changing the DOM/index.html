@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changin the DOM.</title>
+
+    <style>
+        body {
+            max-width: 800px;
+        }
+
+        p {
+            font-size: x-large;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1. Changing the DOM.</h1>
+
+    <h2>1.1 Creating New Nodes</h2>
+    <p id="first">
+        There are various ways in which the DOM can be changed. Static websites require one
+        to directly change elements in the HTML file but dynamic websites are use JS. <br>
+        A combination of createElement() method and textContent property will give you a textual
+        content. But these new features are not visible in the front end of the web browser until
+        when they are inserted.
+        With a combination of appendChild(), insertBefore(), and replaceChild(), you can insert nodes
+        and elements anywhere in the DOM.
+    </p>
+    <script>
+        // Create a new paragraph element node. 
+        const paragraph2 = document.createElement('p');
+        console.log(paragraph2);   // <p></p> , an empty paragraph is out put in the console.
+
+        // Add text to the new paragraph, remember textContent is NOT a function 
+        paragraph2.textContent = 'New paragrapgh that has been created by colllins.';
+        // <p>New paragrapgh that has been created by colllins.<p>
+        // paragraph created
+
+        // Alternate method , NOT recomended.
+        paragraph2.innerHTML = 'Second paragraph created by Kech_Cole.';
+
+
+        // Create a text node 
+        const newText = document.createTextNode('Coles first text node.');
+        console.log(newText);  // Coles first text node.   
+                                // No tags in output.
+    </script>
+
+    <h2>1.2 Inserting Nodes into the DOM</h2>
+    <p>
+        We need to insert created elements and nodes into the document for it to be seen by either adding
+        or replacing.
+    </p>
+    <script>
+        // Apppend newText to the end and beginning of paragraph 1 with id 'first'
+
+        // Step 1. Access the paragraph object.
+        const firstPara = document.getElementById('first');
+        console.log(firstPara);
+
+        // Create paragraph object 
+        const newText2 = document.createTextNode("This just got added by KechCole.");
+
+        // Append 
+        firstPara.append(newText2);
+    </script>
+
+    <h2>1.3 Removing Nodes from the DOM.</h2>
+    <p>
+        Now we know how to create elements, add them to the DOM, and modify existing elements. 
+        The final step is to learn to remove existing nodes from the DOM. Child nodes can be removed 
+        from a parent with removeChild(), and a node itself can be removed with remove().
+
+    </p>
+
+</body>
+
+</html>
