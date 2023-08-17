@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Forms</title>
+</head>
+<style>
+    body {
+        max-width: 700px;
+        font-size: 25px;
+    }
+</style>
+
+<body>
+    <h1>Introduction To Forms</h1>
+    <p>
+        <strong>Forms</strong> are containers that can hold several elements.
+        In JS forms are created using html form elements.
+        Ther are used to collect user informtion using varios elements such as
+        input fields, text fields, labels, buttons, and so on. JavaScript is used
+        to enhance form through validating, interacting and processing them. Js
+        also provides us with methods and properties to work with forms.
+
+        A form can be referenced in the document using JS method <b><i>document.form[0]</i></b>
+        if its the first one.
+        <br>
+        Create a form that contaions three elements: two text boxes and a button.
+        <br>
+    <form action="" id="form1" name="firstform">
+        <label id="name">Name:</label><input type="text"><br>
+        <label id="email">Email:</label><input type="text"><br>
+        <input type="submit" value="submit" id="button">
+    </form>
+    <script type="text/JavaScript">
+        // Log properties of the first form 
+        var firstForm = document.forms[0];
+
+        console.log('The first form is: ' + firstForm);
+        console.log(`The first form has ${firstForm.length} elements`);
+        console.log(`There are ${document.forms.length} forms in this page.`);
+    </script>
+    </p>
+    <br>
+    <p id="details">
+        Create another form that logs employee information about a form on the website when
+        a user clicks a button. The form contains two input fields and a button.
+        Because JS provides methods to process information from forms witjout calling the server
+        we will be able to output infor about a form in the web page.
+    <form action="" id="form2" name="secondform">
+        Name: <input type="text" id="name"><br>
+        Age: <input type="text" id="age"> <br>
+        <input type="button" value="show details" onclick="showDetails()">
+    </form>
+    <script type="text/JavaScript">
+        // Create a function that logg details of the employee from a form 
+        //
+        function showDetails() {
+            // Get first paragraph
+            var empDetails = document.getElementById('details');
+
+            // Get first form element
+            var empName = document.getElementById('name');
+
+            // Get second from element
+            var empAge = document.getElementById('age');
+
+            empDetails.innerHTML = "Name: " + empName.value + "<br>" +
+                " Age: " + empAge.value + "<br>";
+        }
+    </script>
+    </p>
+    <br>
+    <p>
+        Its also posible to loop through each form in a document.
+    <form id="form3" name="thirdform">
+        <label>Name:</label><input type="text"><br>
+        <label>E-mail:</label><input type="text"><br>
+        <label>School:</label><input type="text"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        // Loop through all the form in this page and counts its elements  
+        for (var count = 0; count < document.forms.length; count++) {
+            // Form number value
+            var formNum = count + 1;
+
+            // Log element information
+            console.log(`Form ${formNum} has ${document.forms[count].length} elements.`);
+        }
+    </script>
+    </p>
+    <br>
+    <h2>Using form names</h2>
+    <p>
+        Form names allows you to name forms in a web page so that you can access them later.
+        This helps eliminate confusion because it is quite easy to access form through their
+        attribute values than <i>document.forms[x]</i> method unless one wants to loop through them.
+        A name is provided by adding a name attribute to the form tag on the form to be accessed.
+        The name is a unique identifier that uniquely identifies a form. The name allows it to become
+        an instance of a form object and can be accessed using JS method <i>document.'name'</i>.
+        Note that this method is different from the one ised to access a window object which used
+        id attributes. The id method is the clearest way to access forms because the former ones(name and index)
+        require you to know their index values or specific names.
+    </p>
+    <script>
+        // Accessing a form using its name 
+        console.log(`The third form in this page ${document.thirdform} has ${document.thirdform.length} elements.`)
+    </script>
+    <h2>Using Properties and Methods.</h2>
+    <br>
+    <p>
+        JS form objects help you access form methods and properties. Lets observer some properties.
+        <br>
+        The <b>action property</b> allows you to send the form to server-side script for processing. It has
+        an attribute value containing a URL to the site in which informtion is to be submitted. <br>
+        Create a form that asks for user name and submits this informtion to <i>someplace.com</i>. It
+        should print the URL on the web page.
+
+    <form name="info_form" action="http://someplace.com/php/form.php">
+        <label>Name:</label><input type="text"><br>
+        <label name="gender">Sex:</label>
+        <input type="submit">
+    </form>
+    <script>
+        // A script that informs the user where information is submitted to.
+        document.write("The form goes to " + document.info_form.action);
+    </script>
+    <br>
+    The <b>elements property</b> is an array that allows you access elements of a form in
+    the order in which they appear starting from 0 index position. Lets access elements in the
+    above form and print informtion in the web.
+
+    <script>
+        // Access the Name (text property) of the form above
+
+        // Print in the web 
+        document.write(`<br> The form above first element is ${document.info_form.elements[0]}`);
+
+        // print in the console
+        console.log(`The form above first element is ${document.info_form.elements[0]}`);
+
+        // Accessing form element by their name, one can also use getElementByID() method
+        document.write(`<br> Sex element of the form above:${document.info_form.gender}`);
+    </script>
+    <br>
+    <br>
+    We can now focus on the forms object methods. <br>
+    The <i>checkValidity()</i> method propmts the browser to check whether a field contains data and
+    returns a boolean value.
+    The <i>reset()</i> method resets the form by clearing any input data entered by the user.
+    An example, lets create a script that resets the above form once the data has been processed.
+    Use an alert opertion to reset.
+    <form id="stud_form">
+        <label id="stud-name">Student Name:</label><input type="text"><br>
+        <label name="gender">Sex:</label><br>
+        <input type="submit" value="submit" onclick="submit()">
+    </form>
+    <script>
+        // get form by its id
+        var form = document.getElementById("stud_form");
+
+        // Create an event listener with a function
+        form.addEventListener('submit', function (event) {
+
+            // Get value of a text field
+            var text = document.getElementById("stud-name").value;
+            if (text == "") {
+                alert("Ensure you input a value in both fields!");
+            } else {
+                // perform operation with form input
+                alert("This form has been successfully submitted!");
+                console.log(
+                    `This form has a username of ${text}`
+                );
+            }
+
+            // Prevent default action of submiting to the form to the server
+            event.preventDefault();
+
+            // Reset the form by clearing the text field
+            form.reset();
+        }, false)
+    </script>
+    <br>
+    <br>
+
+    <form id="my_form" action="send_email.php">
+        <label>E-mail:</label><input type="text" id="email"><br><br>
+        <a href="submit.html" id="subm">Submit</a>
+    </form>
+    <script>
+        var my_form = document.getElementById("my_form");
+        subm = document.getElementById("subm");
+        subm.addEventListener("click", function (event) {
+            var email = document.getElementById("email").value;
+            event.preventDefault();
+            my_form.submit();
+        }, false);
+    </script>
+    </p>
+
+
+</body>
+
+</html>
