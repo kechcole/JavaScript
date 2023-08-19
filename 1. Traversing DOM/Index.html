@@ -15,7 +15,7 @@
 
 <body>
     <h2>1 Traversing the DOM.</h2>
-    <P>
+    <p>
         From our previous studies the DOM is structured like a tree of nodes with the document as the
         root and other elements as branches ; elements, comments and text nodes. Navigating these
         structures is cruciall in understanding HTML and JS languages. <br>
@@ -31,12 +31,12 @@
     document node. <br>
     <script>
         // Root nodes
-        console.log('The root node is :')
+        console.log('The root node is :');
         console.log(document);
 
         console.log(document.documentElement);
 
-        console.log('Head tag properties.')
+        console.log('Head tag properties.');
         console.log(document.head);
         console.log('NODE TYPE : ' + document.head.nodeType);
 
@@ -53,7 +53,7 @@
         console.log(breaks);
 
         const paragraphs = document.getElementsByTagName('p');
-        console.log('Paragraphs available ')
+        console.log('Paragraphs available ');
         console.log(paragraphs);
     </script>
 
@@ -70,18 +70,18 @@
         // Test parent of elements 
 
         // Parent of head element using the first head tag 
-        const headTag = document.getElementsByTagName('head')[0]
+        const headTag = document.getElementsByTagName('head')[0];
         console.log('The parent node of head is : ');
         console.log(headTag.parentNode);  // document object
         console.log('The parent element of head is : ');
-        console.log(headTag.parentElement)
+        console.log(headTag.parentElement);
 
         // Parent of h2 and p
         const para = document.getElementsByTagName('h2')[0];  // First header 2 element
         console.log('Parent node of header 2 : ');
         console.log(para.parentNode);
         console.log('The parent element of header 2 is : ');
-        console.log(para.parentElement)
+        console.log(para.parentElement);
 
         // The grandparent is found two steps above, can be located using chaining operation.
         console.log('The grandparent of header 2 is : ');
@@ -93,7 +93,7 @@
         console.log('Parent node of second script tag :');
         console.log(header3.parentNode);
         console.log('The parent element of second script tag is : ');
-        console.log(headTag.parentElement)
+        console.log(headTag.parentElement);
         console.log('The grandparent of second script is : ');
         console.log(headTag.parentNode.parentNode);  // document
     </script>
@@ -185,7 +185,7 @@
         console.log('Next element sibling : ');
         console.log(thirdBodyChild.nextElementSibling);
     </script>
-    </P>
+    </p>
 
 </body>
 
